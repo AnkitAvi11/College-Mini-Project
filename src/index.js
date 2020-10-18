@@ -8,13 +8,17 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
 
+//  keeps looking for any change in the state i.e. from login to logout or logout to login
 firebase.auth().onAuthStateChanged((user) => {
-  if(user) {
+  
+  //  just to check if the user is logged in or not (does nothing except this)
+  if (user) {
     console.log("User logged in")
   }else{
     console.log("user not logged in")
   }
 
+  //  Calling out the render function here to maintain a global authentication state
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={createStore(()=>{}, applyMiddleware(thunk))}>

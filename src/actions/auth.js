@@ -1,12 +1,14 @@
 
 import { firebase, GoogleAuthProvider } from "../firebase/firebase";
 
+//  action for authentication start
 const startAuth =  () => {
     return {
         type : 'AUTH_START'
     }
 }
 
+//  action if authentication returns any error
 const authError = (err) => {
     return {
         type : 'AUTH_ERROR',
@@ -14,6 +16,8 @@ const authError = (err) => {
     }
 }
 
+
+//  action for succesful authentication
 const authSuccess = (user) => {
     return {
         type : 'AUTH_SUCCESS',
@@ -21,6 +25,8 @@ const authSuccess = (user) => {
     }
 }
 
+
+//  user action to log the user in using google O-auth
 export const loginUser = () => {
     return (dispatch => {
         dispatch(startAuth());
@@ -33,6 +39,8 @@ export const loginUser = () => {
     });
 }
 
+
+//  action to log the user out of the application
 export const logoutuser = () => {
     return dispatch => {
         firebase.auth().signOut()
