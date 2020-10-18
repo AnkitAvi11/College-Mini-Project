@@ -20,7 +20,7 @@ class Nav extends Component {
                             <a className="nav-link" href="/">Features</a>
                         </li>
                         <li className="nav-item">
-                            <button className="nav-link btn btn-warning" onClick={this.props.loginUser}>Authenticate</button>
+                            <button className="btn btn-primary" onClick={this.props.loginUser}>Authenticate</button>
                         </li>
                     </ul>
                 </div>  
