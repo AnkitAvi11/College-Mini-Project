@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import { loginUser } from "../actions/auth";
+import { loginUser, logoutuser } from "../actions/auth";
 
 class Nav extends Component {
+
+    componentDidMount = () => {
+        
+    }
+
     render () {
         return (
             <nav className="navbar navbar-expand-md bg-white navbar-light container" style={{marginBottom : "20px"}}>
@@ -19,9 +24,13 @@ class Nav extends Component {
                         <li className="nav-item">
                             <a className="nav-link" href="/">Features</a>
                         </li>
-                        <li className="nav-item">
+                        {
+                            this.props.isloggedin ?
+                            <button className="btn btn-outline-danger" onClick={this.props.logoutuser}>Logout</button> :
+                            <li className="nav-item">
                             <button className="btn btn-primary" onClick={this.props.loginUser}>Authenticate</button>
-                        </li>
+                            </li>
+                        }
                     </ul>
                 </div>  
             </nav>
@@ -29,4 +38,4 @@ class Nav extends Component {
     }
 }
 
-export default connect(null, {loginUser})(Nav);
+export default connect(null, {loginUser, logoutuser})(Nav);

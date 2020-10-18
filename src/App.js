@@ -8,10 +8,17 @@ import { Switch, Router } from 'react-router-dom';
 export const history = createHistory();
 
 class App extends React.Component {
+
+  constructor () {
+    super();
+  }
+
   render() {
     return (
       <Router history={history}>
-        <Nav/>
+        <Nav 
+        isloggedin = {this.props.user ? true : false}
+        />
         <Switch>
 
         </Switch>
@@ -20,4 +27,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default  (App);

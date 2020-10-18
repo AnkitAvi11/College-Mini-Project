@@ -32,3 +32,11 @@ export const loginUser = () => {
         });
     });
 }
+
+export const logoutuser = () => {
+    return dispatch => {
+        firebase.auth().signOut()
+        .then()
+        .catch(err => console.log(err))
+    }
+}

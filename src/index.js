@@ -18,7 +18,9 @@ firebase.auth().onAuthStateChanged((user) => {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={createStore(()=>{}, applyMiddleware(thunk))}>
-        <App />
+        <App 
+        user={user}
+        />
       </Provider>
     </React.StrictMode>,
     document.getElementById('root')
