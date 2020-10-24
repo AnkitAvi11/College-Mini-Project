@@ -30,15 +30,16 @@ const authSuccess = (user) => {
 
 //  user action to log the user in using google O-auth
 export const loginUser = () => {
-    return (dispatch => {
-        dispatch(startAuth());
-        firebase.auth().signInWithPopup(GoogleAuthProvider)
-        .then(res => {
-            authSuccess(res);
-        }).catch(err => {
-            dispatch(authError(err));
-        });
-    });
+    return async dispatch => {
+        await dispatch(startAuth)
+        try {
+            let user = await firebase.auth().signInWithPopup(GoogleAuthProvider)
+            history.push('/dashboard')
+        }catch(err) {
+            dispatch(authError(err))
+        }
+
+    }
 }
 
 

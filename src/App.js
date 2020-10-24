@@ -7,6 +7,7 @@ import { Switch, Router, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import Home from './containers/Home';
 import notFound from './components/Notfound';
+import AddExpense from './components/expense/AddExpense'
 
 export const history = createHistory();
 
@@ -26,6 +27,7 @@ class App extends React.Component {
         {/* Navigation bar */}
         <Nav 
           isloggedin = {this.isloggedin()}
+          user={this.props.user}
         />
 
         {/* All the routes */}
@@ -34,6 +36,9 @@ class App extends React.Component {
           <Route path="/" component={Home} exact />
 
           <PrivateRoute path="/dashboard" component={()=><p>Dashboard</p>} isloggedin={this.isloggedin()} />
+
+          <PrivateRoute path="/addexpense" component={AddExpense}
+          isloggedin={this.isloggedin()} />
 
           <Route path="/unauthenticated" component={()=><p>Not authenticated</p>} />
 

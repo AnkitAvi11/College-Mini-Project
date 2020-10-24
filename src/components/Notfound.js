@@ -10,7 +10,7 @@ const notFound = (props) => {
                         <div className="card-body">
                             <h4>Oops : Error 404</h4>
                             <p>The page you are looking for was not found ...</p>
-                            <p>Click here to go back to the <Link to="/">Home</Link> page</p>
+                            <p>Click here to go back to the <Link to="/" className="card-link">Home</Link> page</p>
                         </div>
                     </div>
                 </div>

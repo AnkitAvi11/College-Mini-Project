@@ -24,8 +24,6 @@ firebase.auth().onAuthStateChanged((user) => {
       </React.StrictMode>,
       document.getElementById('root')
     );
-    console.log("User logged in")
-    history.push('/dashboard')
   }else{
     console.log('User logged out')
   }
