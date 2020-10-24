@@ -12,7 +12,7 @@ class Nav extends Component {
 
     render () {
         return (
-            <nav className="navbar navbar-expand-md bg-white navbar-light container" style={{marginBottom : "20px"}}>
+            <nav className="navbar navbar-expand-md bg-white navbar-light container" style={{marginBottom : "40px"}}>
                 <NavLink className="navbar-brand" to="/">Expenser : Expense Management</NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span className="navbar-toggler-icon"></span>

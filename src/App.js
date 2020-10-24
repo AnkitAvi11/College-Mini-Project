@@ -5,20 +5,10 @@ import Nav from './components/Nav';
 import createHistory from 'history/createBrowserHistory';
 import { Switch, Router, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
+import Home from './containers/Home';
+import notFound from './components/Notfound';
 
 export const history = createHistory();
-
-const dashboard = () => {
-  return (
-    <p>Dashboard</p>
-  )
-}
-
-const unauth = () => {
-  return(
-    <p>Un-authenticated</p>
-  )
-}
 
 class App extends React.Component {
 
@@ -26,16 +16,33 @@ class App extends React.Component {
     super();
   }
 
+  isloggedin = () => {
+    return this.props.user ? true : false
+  }
+
   render() {
     return (
       <Router history={history}>
+        {/* Navigation bar */}
         <Nav 
-        isloggedin = {this.props.user ? true : false}
+          isloggedin = {this.isloggedin()}
         />
+
+        {/* All the routes */}
         <Switch>
-          <PrivateRoute path="/dashboard" component={dashboard} isloggedin={this.props.user ? true : false} />
-          <Route path="/unauthenticated" component={unauth} />
+          
+          <Route path="/" component={Home} exact />
+
+          <PrivateRoute path="/dashboard" component={()=><p>Dashboard</p>} isloggedin={this.isloggedin()} />
+
+          <Route path="/unauthenticated" component={()=><p>Not authenticated</p>} />
+
+          <Route
+          component={notFound}
+          />
+
         </Switch>
+        
       </Router>
     )
   }

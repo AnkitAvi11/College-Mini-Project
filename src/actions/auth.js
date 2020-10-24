@@ -1,6 +1,8 @@
 
 import { firebase, GoogleAuthProvider } from "../firebase/firebase";
 
+import { history } from "../App";
+
 //  action for authentication start
 const startAuth =  () => {
     return {
@@ -44,7 +46,7 @@ export const loginUser = () => {
 export const logoutuser = () => {
     return dispatch => {
         firebase.auth().signOut()
-        .then()
+        .then(()=>history.push('/'))
         .catch(err => console.log(err))
     }
 }
