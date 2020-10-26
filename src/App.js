@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './containers/Home';
 import notFound from './components/Notfound';
 import AddExpense from './components/expense/AddExpense'
+import AddIncome from "./components/expense/AddIncome";
 
 export const history = createHistory();
 
@@ -39,6 +40,8 @@ class App extends React.Component {
 
           <PrivateRoute path="/addexpense" component={AddExpense}
           isloggedin={this.isloggedin()} />
+
+          <PrivateRoute path="/addincome" component={AddIncome} isloggedin={this.isloggedin()} />
 
           <Route path="/unauthenticated" component={()=><p>Not authenticated</p>} />
 

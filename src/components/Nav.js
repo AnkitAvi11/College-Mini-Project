@@ -55,7 +55,7 @@ class Nav extends Component {
                         {private_links}
                         {
                             this.props.isloggedin ?
-                            <button className="btn btn-outline-danger" onClick={this.props.logoutuser}>Logout</button> :
+                            <button className="btn btn-danger" onClick={this.props.logoutuser}>Logout</button> :
                             <li className="nav-item">
                             <button className="btn btn-primary" onClick={this.props.loginUser}>Authenticate</button>
                             </li>
