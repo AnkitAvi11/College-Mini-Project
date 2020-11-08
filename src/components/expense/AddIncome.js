@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import layout from '../Layout';
-
+import { firebase } from "../../firebase/firebase";
+import { history } from "../../App";
 
 class AddIncome extends Component {
 
@@ -13,11 +14,26 @@ class AddIncome extends Component {
         }
     }
 
+    onChange = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        });
+    }
+
     onFormSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        let user = firebase.auth().currentUser;
+        if(!(this.state.title && this.state.amount && this.state.date)) {
+            return alert('Please fill the details')
+        }else{
+            console.log(this.state)
+            history.push('/dashboard')
+        }
+        
     }
 
     render () {
+
         return (
             <layout>
                 <div className="container">
@@ -29,15 +45,15 @@ class AddIncome extends Component {
                                         <h3>Add income</h3>
                                         <div className="form-group">
                                            <label htmlFor="title">Title</label> 
-                                           <input type="text" name="title" id="title" className="form-control"/>
+                                           <input type="text" name="title" id="title" className="form-control" onChange={this.onChange} value={this.state.title} />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="amount">Amount</label>
-                                            <input type="number" name="amount" id="amount" className="form-control" step={0.01} />
+                                            <input type="number" name="amount" id="amount" className="form-control" step={0.01} onChange={this.onChange} value={this.state.amount} />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="date">Date </label>
-                                            <input type="date" name="date" id="date" className="form-control"/>
+                                            <input type="date" name="date" id="date" className="form-control" onChange={this.onChange} value={this.state.date} />
                                         </div>
                                         <div className="form-group">
                                             <input type="submit" value="Add Income" className="btn btn-dark"/>

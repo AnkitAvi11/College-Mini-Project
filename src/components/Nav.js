@@ -12,8 +12,6 @@ class Nav extends Component {
 
     render () {
 
-        console.log(this.props.user);
-
         let private_links = null;
 
         if (this.props.isloggedin) {
