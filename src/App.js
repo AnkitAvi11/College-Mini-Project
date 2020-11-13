@@ -15,7 +15,7 @@ export const history = createHistory();
 
 class App extends React.Component {
 
-  constructor () {
+  constructor () { 
     super();
   }
 
