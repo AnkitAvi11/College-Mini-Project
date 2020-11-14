@@ -21,7 +21,7 @@ class Nav extends Component {
                     <NavLink className="nav-link dropdown-toggle" to="#" id="navbardrop" data-toggle="dropdown">
                         {this.props.user.displayName}
                     </NavLink>
-                    <div class="dropdown-menu">
+                    <div className="dropdown-menu">
                         <Link className="dropdown-item" to="/addexpense">Add Expense</Link>
                         <Link className="dropdown-item" to="/addincome">Add Income</Link>
                         <Link className="dropdown-item" to="/expenses">View all details</Link>
