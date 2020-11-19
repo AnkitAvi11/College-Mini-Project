@@ -23,7 +23,9 @@ class AddExpense extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault()
-        
+        if(!(this.state.title && this.state.amount )) {
+            return alert('Please fill the details')
+        }
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         let username = firebase.auth().currentUser.email;

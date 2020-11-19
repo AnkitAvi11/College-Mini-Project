@@ -23,7 +23,7 @@ class AddIncome extends Component {
     onFormSubmit = (e) => {
         e.preventDefault();
         let user = firebase.auth().currentUser;
-        if(!(this.state.title && this.state.amount && this.state.date)) {
+        if(!(this.state.title && this.state.amount )) {
             return alert('Please fill the details')
         }else{
             console.log(this.state)
@@ -51,10 +51,7 @@ class AddIncome extends Component {
                                             <label htmlFor="amount">Amount</label>
                                             <input type="number" name="amount" id="amount" className="form-control" step={0.01} onChange={this.onChange} value={this.state.amount} />
                                         </div>
-                                        <div className="form-group">
-                                            <label htmlFor="date">Date </label>
-                                            <input type="date" name="date" id="date" className="form-control" onChange={this.onChange} value={this.state.date} />
-                                        </div>
+                                        
                                         <div className="form-group">
                                             <input type="submit" value="Add Income" className="btn btn-dark"/>
                                         </div>
