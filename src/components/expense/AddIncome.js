@@ -22,13 +22,33 @@ class AddIncome extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        let user = firebase.auth().currentUser;
         if(!(this.state.title && this.state.amount )) {
             return alert('Please fill the details')
-        }else{
-            console.log(this.state)
-            history.push('/dashboard')
         }
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        let username = firebase.auth().currentUser.email;
+        var raw = JSON.stringify({"username":username,"title":this.state.title,"amount":this.state.amount});
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/income/add", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            alert('Your transaction has been saved succesfully');
+            console.log(result)
+            this.setState({
+                title : '',
+                amount : ''
+            })
+        })
+        .catch(error => console.log('error', error));
         
     }
 
