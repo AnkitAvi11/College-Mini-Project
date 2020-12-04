@@ -257,7 +257,7 @@ class Transaction extends Component {
                             You have Rs. {moneyLeftToSpend} left in total to spend.
                         </h3>
                         <p>
-                            <b>{perdayExpense <= 0 ? 'You can not spend any amount further. You are already in debt.' : `You can spend Rs. ${perdayExpense} per day.`}</b>
+                            <b>{perdayExpense <= 0 ? 'You can not spend any amount further. You are already in debt.' : `You can spend Rs. ${parseInt(perdayExpense)} per day.`}</b>
                         </p>
                     </div>
                 </div>
@@ -274,6 +274,7 @@ class Transaction extends Component {
                     <div class="modal-body">
                         <p>{this.state.selectedExpense ? this.state.selectedExpense.title : ""}</p>
                         <p>{this.state.selectedIncome ? this.state.selectedIncome.title : ""}</p>
+                        <p><b>Do you really want to delete this transaction ?</b></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={this.hideDisplay}>Close</button>
