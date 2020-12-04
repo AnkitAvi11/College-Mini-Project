@@ -29,7 +29,11 @@ class Transaction extends Component {
         super(props);
         this.state = {
             income : [],
-            expenses : []
+            expenses : [],
+            display : "hidden",
+            active : false,
+            selectedExpense : null,
+            selectedIncome : null
         }
     }
 
@@ -48,6 +52,31 @@ class Transaction extends Component {
         })
     }
 
+    blockExpenseDisplay = (id) => {
+        this.setState({
+            display : "block",
+            selectedExpense : this.state.expenses[id]
+        })
+        console.log(id)
+        console.log(this.state.expenses[id])
+    }
+
+    blockIncomeDisplay = (id) => {
+        this.setState({
+            display : "block",
+            selectedIncome : this.state.income[id]
+        })
+        console.log(this.state.income[id])
+    }
+
+    hideDisplay = () => {
+        this.setState({
+            display : "none",
+            selectedExpense : null,
+            selectedIncome : null
+        })
+    }
+
     render () {
         
         if (this.state.expenses.length <= 0)  {
@@ -62,6 +91,11 @@ class Transaction extends Component {
                     <td>{transaction.title}</td>
                     <td>Rs. {transaction.amount}</td>
                     <td>{new Date(transaction.publicationDate).toDateString()}</td>
+                    <td>
+                        <button className="btn btn-outline-danger" onClick={()=>{this.blockIncomeDisplay(index)}}>
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             )
         })
@@ -74,6 +108,11 @@ class Transaction extends Component {
                     <td>{transaction.title}</td>
                     <td>Rs. {transaction.amount}</td>
                     <td>{new Date(transaction.publicationDate).toDateString()}</td>
+                    <td>
+                        <button className="btn btn-outline-danger" onClick={()=>{this.blockExpenseDisplay(index)}}>
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             )
         })
@@ -119,6 +158,7 @@ class Transaction extends Component {
                                     <th>Title</th>
                                     <th>Income Amount</th>
                                     <th>Date</th>
+                                    <th></th>
                                 </tr>
                                 {transactions}
                             </thead>
@@ -131,6 +171,7 @@ class Transaction extends Component {
                                     <th>Title</th>
                                     <th>Expense Amount</th>
                                     <th>Date</th>
+                                    <th></th>
                                 </tr>
                                 {expenses}
                             </thead>
@@ -153,6 +194,28 @@ class Transaction extends Component {
                         </p>
                     </div>
                 </div>
+
+                <div class="modal" tabindex="1" style={{display : this.state.display}}>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{this.state.selectedExpense ? this.state.selectedExpense.title : ""}{this.state.selectedIncome ? this.state.selectedIncome.title : ""}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{this.state.selectedExpense ? this.state.selectedExpense.title : ""}</p>
+                        <p>{this.state.selectedIncome ? this.state.selectedIncome.title : ""}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={this.hideDisplay}>Close</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
             </div>
         )
     }
