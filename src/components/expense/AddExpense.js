@@ -38,7 +38,7 @@ class AddExpense extends Component {
         redirect: 'follow'
         };
 
-        fetch("http://localhost:8080/income/add", requestOptions)
+        fetch("http://localhost:8080/expense/add", requestOptions)
         .then(response => response.text())
         .then(result => {
             alert('Your transaction has been saved succesfully');

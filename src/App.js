@@ -10,6 +10,7 @@ import notFound from './components/Notfound';
 import AddExpense from './components/expense/AddExpense'
 import AddIncome from "./components/expense/AddIncome";
 import Dashboard from "./containers/Dashboard";
+import Transaction from './containers/Transaction';
 
 export const history = createHistory();
 
@@ -43,6 +44,8 @@ class App extends React.Component {
           isloggedin={this.isloggedin()} />
 
           <PrivateRoute path="/addincome" component={AddIncome} isloggedin={this.isloggedin()} />
+
+          <PrivateRoute path="/expenses" component={Transaction} isloggedin={this.isloggedin} />
 
           <Route path="/unauthenticated" component={()=><p>Not authenticated</p>} />
 

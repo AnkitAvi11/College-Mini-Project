@@ -37,6 +37,7 @@ class Dashboard extends Component {
                     <div className="col-sm-4">
                         <div className="card">
                             <img src={this.state.user.photoURL} alt="" style={{width : "100%"}} />
+                            
                             <div className="card-body">
                                 <h4 className="card-text"><b>{this.state.user.displayName}</b></h4>
                                 <p className="card-text"><small>{this.state.user.email}</small></p>
