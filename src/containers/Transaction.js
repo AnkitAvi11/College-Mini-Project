@@ -31,7 +31,6 @@ class Transaction extends Component {
             income : [],
             expenses : [],
             display : "hidden",
-            active : false,
             selectedExpense : null,
             selectedIncome : null
         }
@@ -57,8 +56,6 @@ class Transaction extends Component {
             display : "block",
             selectedExpense : this.state.expenses[id]
         })
-        console.log(id)
-        console.log(this.state.expenses[id])
     }
 
     blockIncomeDisplay = (id) => {
@@ -66,7 +63,6 @@ class Transaction extends Component {
             display : "block",
             selectedIncome : this.state.income[id]
         })
-        console.log(this.state.income[id])
     }
 
     hideDisplay = () => {
@@ -76,6 +72,77 @@ class Transaction extends Component {
             selectedIncome : null
         })
     }
+
+
+    deleteIncome = (t_id) => {
+        let user_email = firebase.auth().currentUser.email;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"username":"priya","title":"Second transaction","amount":20});
+
+        var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/income/delete/"+t_id, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            let user_email = firebase.auth().currentUser.email;
+            fetch("http://localhost:8080/income/"+user_email)
+            .then(res => res.json())
+            .then(async data => {
+                let expenses = await (await fetch("http://localhost:8080/expense/"+user_email)).json()
+                this.setState({
+                    income : data,
+                    expenses : expenses,
+                    display : "none",
+                    selectedIncome : null
+                })
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    deleteExpense = (t_id) => {
+        let user_email = firebase.auth().currentUser.email;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"username":"priya","title":"Second transaction","amount":20});
+
+        var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/expense/delete/"+t_id, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            fetch("http://localhost:8080/income/"+user_email)
+            .then(res => res.json())
+            .then(async data => {
+                let expenses = await (await fetch("http://localhost:8080/expense/"+user_email)).json()
+                this.setState({
+                    income : data,
+                    expenses : expenses,
+                    display : "none",
+                    selectedExpense : null
+                })
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+    
 
     render () {
         
@@ -210,7 +277,9 @@ class Transaction extends Component {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={this.hideDisplay}>Close</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-danger" onClick={this.state.selectedExpense ? ()=>{this.deleteExpense(this.state.selectedExpense.id)} : ()=>{this.deleteIncome(this.state.selectedIncome.id)}}>
+                            Delete
+                        </button>
                     </div>
                     </div>
                 </div>
