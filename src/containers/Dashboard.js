@@ -70,10 +70,10 @@ class Dashboard extends Component {
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: label.reverse(),
+                    labels: label,
                     datasets: [{
                         label: 'Money Spent this week',
-                        data: oset.reverse(),
+                        data: oset,
                         backgroundColor: [
                             'transparent',
                             
@@ -189,10 +189,10 @@ class Dashboard extends Component {
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: label.reverse(),
+                    labels: label,
                     datasets: [{
                         label: 'Money Spent this week',
-                        data: oset.reverse(),
+                        data: oset,
                         backgroundColor: [
                             'transparent',
                             
@@ -286,8 +286,10 @@ class Dashboard extends Component {
                     </div>
                     <div className="col-sm-8">
                         <h5><b>Dashboard</b></h5>
+                        <h4>This week expense</h4>
                         <canvas id="myChart" width="100%"></canvas>
                         <canvas id="myChart2" width="100%"></canvas>
+                        <h4>This week income</h4>
                         <canvas id="myChart3" width="100%"></canvas>
                         <canvas id="myChart4" width="100%"></canvas>
                     </div>

@@ -11,6 +11,7 @@ import AddExpense from './components/expense/AddExpense'
 import AddIncome from "./components/expense/AddIncome";
 import Dashboard from "./containers/Dashboard";
 import Transaction from './containers/Transaction';
+import About from './components/About';
 
 export const history = createHistory();
 
@@ -36,7 +37,9 @@ class App extends React.Component {
         {/* All the routes */}
         <Switch>
           
-          <Route path="/" component={Home} exact />
+          <Route path="/" component={Home} exact={true} />
+
+          <Route path="/about" component={About} exact={true} />
 
           <PrivateRoute path="/dashboard" component={Dashboard} isloggedin={this.isloggedin()} />
 

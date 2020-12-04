@@ -44,9 +44,7 @@ class Nav extends Component {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/about" activeClassName="active">About</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/features" activeClassName="active">Features</NavLink>
-                        </li>
+                        
                     </ul>
 
                     <ul className="navbar-nav ml-auto">
