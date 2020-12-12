@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Loader from '../components/Loader';
 import { firebase } from "../firebase/firebase";
 import { Doughnut } from 'react-chartjs-2';
-
+import {motion} from 'framer-motion';
 
 function getMonthDay(month) {
     switch(month) {
@@ -262,8 +262,16 @@ class Transaction extends Component {
                     </div>
                 </div>
 
-                <div class="modal" tabindex="1" style={{display : this.state.display}}>
-                <div class="modal-dialog">
+                <motion.div class="modal" tabindex="1" style={{display : this.state.display, background:'rgba(0,0,0,.5)'}}
+                initial={{opacity:0}}
+                animate={{opacity:1}}
+                transition={{delay:0.3}}
+                >
+                <motion.div class="modal-dialog"
+                initial={{y:"-100vh"}}
+                animate={{y:0}}
+                transition={{delay:0.3}}
+                >
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">{this.state.selectedExpense ? this.state.selectedExpense.title : ""}{this.state.selectedIncome ? this.state.selectedIncome.title : ""}</h5>
@@ -283,8 +291,8 @@ class Transaction extends Component {
                         </button>
                     </div>
                     </div>
-                </div>
-                </div>
+                </motion.div>
+                </motion.div>
 
             </div>
         )
