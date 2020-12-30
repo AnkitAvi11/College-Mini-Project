@@ -14,6 +14,7 @@ firebase.auth().onAuthStateChanged((user) => {
   
   //  just to check if the user is logged in or not (does nothing except this)
   if (user) {
+    console.log('user loggedin')
     ReactDOM.render(
       <React.StrictMode>
         <Provider store={createStore(()=>{}, applyMiddleware(thunk))}>

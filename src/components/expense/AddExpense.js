@@ -41,12 +41,13 @@ class AddExpense extends Component {
         fetch("http://localhost:8080/expense/add", requestOptions)
         .then(response => response.text())
         .then(result => {
-            alert('Your transaction has been saved succesfully');
             console.log(result)
             this.setState({
                 title : '',
                 amount : ''
             })
+            alert('Your transaction has been saved succesfully')
+            this.props.history.push('/expenses')
         })
         .catch(error => console.log('error', error));
     }
