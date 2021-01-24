@@ -6,18 +6,18 @@ import {motion} from 'framer-motion';
 
 function getMonthDay(month) {
     switch(month) {
-        case 1 : return 31;
-        case 2 : return 28;
-        case 3 : return 31;
-        case 4 : return 30;
-        case 5 : return 31;
-        case 6 : return 30;
+        case 0 : return 31;
+        case 1 : return 28;
+        case 2 : return 31;
+        case 3 : return 30;
+        case 4 : return 31;
+        case 5 : return 30;
+        case 6 : return 31;
         case 7 : return 31;
-        case 8 : return 31;
-        case 9 : return 30;
-        case 10 : return 31;
-        case 11 : return 30;
-        case 12 : return 31;
+        case 8 : return 30;
+        case 9 : return 31;
+        case 10 : return 30;
+        case 11 : return 31;
         default : return null;
     }
 } 
@@ -210,8 +210,10 @@ class Transaction extends Component {
             
         }
 
-        let moneyLeftToSpend = total_income - total_expense;
-        let perdayExpense = moneyLeftToSpend/(getMonthDay(new Date().getMonth() - new Date().getDay()))
+        let moneyLeftToSpend = total_income;
+        let perdayExpense = moneyLeftToSpend/(getMonthDay(new Date().getMonth()) - parseInt(new Date().toDateString().split(" ")[2]) + 1)
+
+        console.log(moneyLeftToSpend, perdayExpense)
 
         return (
             <div className="container">
@@ -254,10 +256,10 @@ class Transaction extends Component {
                             
                         </p>
                         <h3>
-                            You have Rs. {moneyLeftToSpend} left in total to spend.
+                            You have Rs. {Math.round(total_income)} left in total to spend.
                         </h3>
                         <p>
-                            <b>{perdayExpense <= 0 ? 'You can not spend any amount further. You are already in debt.' : `You can spend Rs. ${parseInt(perdayExpense)} per day.`}</b>
+                            <b>{perdayExpense <= 0 ? 'You can not spend any amount further. You are already in debt.' : `You can spend Rs. ${Math.round(perdayExpense)} per day.`}</b>
                         </p>
                     </div>
                 </div>

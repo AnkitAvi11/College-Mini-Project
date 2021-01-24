@@ -7,7 +7,6 @@ import {firebase} from './firebase/firebase';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
-import {history} from './App'
 
 //  keeps looking for any change in the state i.e. from login to logout or logout to login
 firebase.auth().onAuthStateChanged((user) => {
@@ -43,4 +42,4 @@ firebase.auth().onAuthStateChanged((user) => {
 
 });
 
-serviceWorker.unregister();
+serviceWorker.register();
