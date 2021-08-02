@@ -4,7 +4,7 @@ This repository contains the frontend related files. And the backend repository 
 
 ##  Features
 - Authentication using Google OAuth 2.0 
-- PostgresSQL as the backend
+- MYSQL as the backend
 - Analytics (With beautiful data visualization)
 - Creating Expenses and Credits
 - Searching Expenses by month
